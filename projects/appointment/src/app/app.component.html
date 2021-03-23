@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let item of datePicker.items">
+    {{ item.date }}
+    <ul>
+      <li *ngFor="let slot of item.slots">{{ slot.start }} - {{ slot.end }} ({{ slot.id }})</li>
+    </ul>
+   </li>
+</ul>
+

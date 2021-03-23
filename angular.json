@@ -1,6 +1,110 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "f0882d22-226e-4578-9879-56364b85767a"
+  },
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "appointment": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/appointment",
+      "sourceRoot": "projects/appointment/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/appointment",
+            "index": "projects/appointment/src/index.html",
+            "main": "projects/appointment/src/main.ts",
+            "polyfills": "projects/appointment/src/polyfills.ts",
+            "tsConfig": "projects/appointment/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/appointment/src/favicon.ico",
+              "projects/appointment/src/assets"
+            ],
+            "styles": [
+              "projects/appointment/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/appointment/src/environments/environment.ts",
+                  "with": "projects/appointment/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "appointment:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "appointment:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "appointment:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/appointment/src/test.ts",
+            "polyfills": "projects/appointment/src/polyfills.ts",
+            "tsConfig": "projects/appointment/tsconfig.spec.json",
+            "karmaConfig": "projects/appointment/karma.conf.js",
+            "assets": [
+              "projects/appointment/src/favicon.ico",
+              "projects/appointment/src/assets"
+            ],
+            "styles": [
+              "projects/appointment/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/appointment/tsconfig.app.json",
+              "projects/appointment/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "defaultProject": "appointment"
 }
